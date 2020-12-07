@@ -19,22 +19,22 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/articles">Articles <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('articles.index') }} ">Articles </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/catalogs">Catalog <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('catalogs.index')}}">Catalogs <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/catalog_types">Catalog Types <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('catalog_types.index')}}">Catalog Types <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/centers">Centers <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('centers.index')}}">Centers <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/customers">Customers <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('customers.index')}}">Customers <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/producers">Producers <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('producers.index')}}">Producers <span class="sr-only">(current)</span></a>
       </li>
   </div>
 </nav>

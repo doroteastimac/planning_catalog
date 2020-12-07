@@ -48,7 +48,7 @@ class ProducerController extends Controller
     public function show($id)
     {
         $producers= Producer::findorFail($id);
-        dd($producers);
+        return view('Producers.show',compact('producers'));
     }
 
     /**

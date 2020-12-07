@@ -3,7 +3,8 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table">
+<a href="{{ route ('articles.create')}}" class="btn btn-primary mt-5"> ADD </a>
+<table class="table mt-3">
   <thead class="thead-light">
     <tr>
       <th scope="col">ID</th>
@@ -12,6 +13,7 @@
       <th scope="col">TP</th>
       <th scope="col">PAL</th>
       <th scope="col">Kategorija</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +25,10 @@
         <td>{{$articles->article_tp}}</td>
         <td>{{$articles->article_pal}}</td>
         <td>{{$articles->category}}</td>
+        <td> 
+          <a class="btn btn-outline-primary" href="{{ route ('articles.show', ['article' => $articles -> id])}}"> Details</a>
+          <a class="btn btn-outline-primary" href="{{ route ('articles.edit', ['article' => $articles -> id])}}">edit</a>
+        </td>
         </tr>
     @endforeach
     </tbody>

@@ -49,7 +49,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         $articles= Article::findorFail($id);
-        dd($articles);
+        return view('articles.show',['articles' =>$articles]);
     }
 
     /**

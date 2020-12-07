@@ -47,7 +47,7 @@ class CatalogController extends Controller
     public function show($id)
     {
         $catalogs= Catalog::findorFail($id);
-        dd($catalogs);
+        return view('catalogs.show',compact('catalogs'));
     }
 
     /**

@@ -48,8 +48,8 @@ class CatalogTypeController extends Controller
      */
     public function show($id)
     {
-        $catalog_types= CatalogType::paginate();
-        dd($catalog_types);
+        $catalog_types= CatalogType::findOrFail($id);
+        return view('catalogtypes.show',compact('catalog_types'));
     }
 
     /**

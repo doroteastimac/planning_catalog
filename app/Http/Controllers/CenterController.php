@@ -47,7 +47,7 @@ class CenterController extends Controller
     public function show($id)
     {
         $centers= Center::findorFail($id);
-        dd($centers);
+        return view('centers.show',compact('centers'));
     }
 
     /**

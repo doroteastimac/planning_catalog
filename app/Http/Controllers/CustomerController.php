@@ -47,7 +47,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         $customers= Customer::findorFail($id);
-        dd($customers);
+        return view('customers.show',compact('customers'));
     }
 
     /**
