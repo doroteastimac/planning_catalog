@@ -10,6 +10,7 @@
       <th scope="col">ID</th>
       <th scope="col">Datum početka</th>
       <th scope="col">Datum kraja</th>
+      <th scope="col">Vrsta kataloga</th>
       <th> Actions </th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
         <td>{{$catalogs->id}}</td>
         <td>{{$catalogs->starts_at}}</td>
         <td>{{$catalogs->ends_at}}</td>
+        <td>{{$catalogs->catalog_type->catalog_type}}</td>
         <td> 
           <a class="btn btn-outline-primary" href="{{ route ('catalogs.show', ['catalog' => $catalogs -> id])}}"> Details</a>
           <a class="btn btn-outline-primary" href="{{ route ('catalogs.edit', ['catalog' => $catalogs -> id])}}">edit</a>

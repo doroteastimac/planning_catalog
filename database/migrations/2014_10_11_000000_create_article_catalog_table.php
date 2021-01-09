@@ -16,8 +16,8 @@ class CreateArticleCatalogTable extends Migration
         Schema::create('article_catalog', function (Blueprint $table) {
             $table->id();
             $table->integer('sales_count');
-            $table->foreignId('article_id')->constrained();
-            $table->foreignId('catalog_id')->constrained();
+            $table->foreignId('article_id')->constrained('articles');
+            $table->foreignId('catalog_id')->constrained('catalogs');
             $table->timestamps();
         });
     }

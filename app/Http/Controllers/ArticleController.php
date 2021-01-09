@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Producer;
+
 
 class ArticleController extends Controller
 {
@@ -14,10 +16,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles= Article::paginate();
-        return view('articles.index',['articles' =>$articles]);
+        $articles= Article::with(['producer'])->paginate();
+        return view('articles.index',compact ('articles'));
         
     }
+   
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +29,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('articles.create'); 
     }
 
     /**
@@ -37,7 +41,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validated=$request->validate([
+            'article_code' => 'required|max:255',
+            'article_name' => 'required|max:255',
+            'article_tp' => 'required|max:255',
+            'article_pal' => 'required|max:255',
+            'category' => 'required|max:255',
+            'producer_id' => ''
+        ]);
+        
+        
+        $articles=Article::create($validated);
+        return view('articles.show', compact ('articles'));
+        
     }
 
     /**
@@ -48,8 +65,11 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $articles= Article::findorFail($id);
-        return view('articles.show',['articles' =>$articles]);
+        $articles= Article::with('producer')->findorFail($id);
+        $article_center=$articles->article_center()->paginate();
+        $article_catalog=$articles->article_catalog()->paginate();
+        $article_customer=$articles->article_customer()->paginate();
+        return view('articles.show',compact('articles','article_center','article_catalog','article_customer'));
     }
 
     /**
@@ -60,7 +80,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $articles=Article::findOrFail($id);
+        $producers=Producer::pluck('producer_name','id');
+        return view('articles.edit', compact ('articles','producers'));
     }
 
     /**
@@ -72,7 +94,19 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated=$request->validate([
+            'article_code' => 'required|max:255',
+            'article_name' => 'required|max:255',
+            'article_tp' => 'required|max:255',
+            'article_pal' => 'required|max:255',
+            'category' => 'required|max:255',
+            'producer_id' => 'required'
+        ]);
+
+        $articles=Article::findOrFail($id);
+        $articles-> fill($validated);
+        $articles->save();
+        return redirect() ->route('articles.show',['article'=>$articles ->id]);
     }
 
     /**
@@ -83,6 +117,7 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Article::destroy($id);
+        return redirect() ->route('articles.index');
     }
 }

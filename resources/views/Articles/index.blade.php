@@ -13,6 +13,7 @@
       <th scope="col">TP</th>
       <th scope="col">PAL</th>
       <th scope="col">Kategorija</th>
+      <th scope="col">Dobavljač</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -25,6 +26,7 @@
         <td>{{$articles->article_tp}}</td>
         <td>{{$articles->article_pal}}</td>
         <td>{{$articles->category}}</td>
+        <td>{{$articles->producer->producer_name}}</td>
         <td> 
           <a class="btn btn-outline-primary" href="{{ route ('articles.show', ['article' => $articles -> id])}}"> Details</a>
           <a class="btn btn-outline-primary" href="{{ route ('articles.edit', ['article' => $articles -> id])}}">edit</a>

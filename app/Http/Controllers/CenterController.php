@@ -24,7 +24,7 @@ class CenterController extends Controller
      */
     public function create()
     {
-        //
+        return view('centers.create');
     }
 
     /**
@@ -35,8 +35,16 @@ class CenterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated=$request->validate([
+            'center_code'=> 'required|unique:centers|max:255',
+            'center_name' => 'required|unique:centers|max:255',
+            'center_address' => 'required|unique:centers|max:255'
+        ]);
+        $centers=Center::create($validated);
+        return view('centers.show',compact('centers'));
     }
+
+    
 
     /**
      * Display the specified resource.
@@ -58,7 +66,9 @@ class CenterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $centers=Center::findOrFail($id);
+        return view('centers.edit', compact('centers'));
+
     }
 
     /**
@@ -70,7 +80,17 @@ class CenterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated=$request -> validate ([
+            'center_code'=> 'required|max:255',
+            'center_name' => 'required|max:255',
+            'center_address' => 'required|max:255'
+        ]);
+
+        $centers=Center::findOrFail($id);
+        $centers -> fill($validated);
+        $centers -> save();
+
+        return view('centers.show',compact ('centers'));
     }
 
     /**
@@ -81,6 +101,7 @@ class CenterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Center::destroy($id);
+        return redirect() ->route('centers.index');
     }
 }

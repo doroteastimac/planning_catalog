@@ -26,7 +26,7 @@ class CatalogTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogtypes.create');
     }
 
     /**
@@ -37,7 +37,12 @@ class CatalogTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated=$request->validate([
+            'catalog_type'=> 'required|unique:catalog_types|max:255',
+            
+        ]);
+        $catalog_types=CatalogType::create($validated);
+        return view('catalogtypes.show',compact('catalog_types'));
     }
 
     /**
@@ -60,7 +65,8 @@ class CatalogTypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $catalog_types=CatalogType::findOrFail($id);
+        return view('catalogtypes.edit', compact('catalog_types'));
     }
 
     /**
@@ -72,7 +78,15 @@ class CatalogTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated=$request->validate([
+            'catalog_type'=> 'required|max:255',
+            
+        ]);
+        $catalog_types=CatalogType::findOrFail($id);
+        $catalog_types -> fill($validated);
+        $catalog_types -> save();
+
+        return view('catalogtypes.show',compact ('catalog_types'));
     }
 
     /**
@@ -83,6 +97,7 @@ class CatalogTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        CatalogType::destroy($id);
+        return redirect() ->route('catalogtypes.index');
     }
 }

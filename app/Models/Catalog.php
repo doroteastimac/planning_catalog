@@ -10,10 +10,15 @@ class Catalog extends Model
     use HasFactory;
     protected $fillable = [
         'starts_at',
-        'ends_at'
+        'ends_at',
+        'catalog_type_id'
     ];
-    public function article()
+    public function catalog_type()
     {
-        return $this->belongsToMany('planning_catalog\Models\Article');
+        return $this->belongsTo(CatalogType::class);
+    }
+    public function article_catalog()
+    {
+        return $this->belongsToMany(Catalog::class,'article_catalog','article_id','catalog_id');
     }
 }

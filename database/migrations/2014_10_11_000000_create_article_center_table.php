@@ -15,8 +15,8 @@ class CreateArticleCenterTable extends Migration
     {
         Schema::create('article_center', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('center_id')->constrained();
-            $table->foreignId('article_id')->constrained();
+            $table->foreignId('center_id')->constrained('centers');
+            $table->foreignId('article_id')->constrained('articles');
             $table->timestamps();
         });
     }

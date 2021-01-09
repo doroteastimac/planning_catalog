@@ -3,9 +3,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    <h3 class="mt-3"> Catalog detal </h3>
-    <ul class= "list-unstyled"> 
+<<div class="mt-5 text-center">
+    <h1> {{$catalogs->catalog_type->catalog_type}} </h1>
+    <img src="https://picsum.photos/seed/picsum/300/300" alt="image" class="d-block mx-auto rounded-circle">
      
         <li><b>Starts at:</b> {{ $catalogs -> starts_at}}</li>
         <li><b>Ends at:</b> {{ $catalogs -> ends_at}}</li>

@@ -16,8 +16,8 @@ class CreateArticleCustomerTable extends Migration
         Schema::create('article_customer', function (Blueprint $table) {
             $table->id();
             $table->string('customer_type',45);
-            $table->foreignId('article_id')->constrained();
-            $table->foreignId('customer_id')->constrained();
+            $table->foreignId('article_id')->constrained('articles');
+            $table->foreignId('customer_id')->constrained('customers');
             $table->timestamps();
         });
     }

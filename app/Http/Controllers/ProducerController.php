@@ -25,7 +25,7 @@ class ProducerController extends Controller
      */
     public function create()
     {
-        //
+        return view('producers.create');
     }
 
     /**
@@ -36,7 +36,12 @@ class ProducerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated=$request->validate([
+            'producer_code'=> 'required|unique:producers|max:255',
+            'producer_name' => 'required|unique:producers|max:255'            
+        ]);
+        $producers=Producer::create($validated);
+        return view('producers.show',compact('producers'));
     }
 
     /**
@@ -59,7 +64,8 @@ class ProducerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producers=Producer::findOrFail($id);
+        return view('producers.edit', compact('producers'));
     }
 
     /**
@@ -71,7 +77,16 @@ class ProducerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated=$request -> validate ([
+            'producer_code'=> 'required|max:255',
+            'producer_name' => 'required|max:255'
+             ]);
+
+        $producers=Producer::findOrFail($id);
+        $producers -> fill($validated);
+        $producers -> save();
+
+        return view('producers.show',compact ('producers'));
     }
 
     /**
@@ -82,6 +97,7 @@ class ProducerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Producer::destroy($id);
+        return redirect() ->route('producers.index');
     }
 }

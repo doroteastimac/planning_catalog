@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Catalog;
+use App\Models\CatalogType;
 class CatalogController extends Controller
 {
     /**
@@ -13,8 +14,10 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        $catalogs= Catalog::paginate();
+        $catalogs= Catalog::with(['catalog_type'])->paginate();
         return view('catalogs.index',compact('catalogs'));
+
+       
     }
 
     /**
@@ -24,7 +27,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogs.create');
     }
 
     /**
@@ -33,9 +36,16 @@ class CatalogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
-        //
+        $validated = $request->validate([
+        'starts_at' => 'required',
+        'ends_at'=> 'required',
+        'catalog_type_id' => '' 
+        ]);
+         $catalogs=Catalog::create($validated);
+         return view('catalogs.show', compact('catalogs'));
+
     }
 
     /**
@@ -46,8 +56,10 @@ class CatalogController extends Controller
      */
     public function show($id)
     {
-        $catalogs= Catalog::findorFail($id);
-        return view('catalogs.show',compact('catalogs'));
+        $catalogs= Catalog::with('catalog_type')->findorFail($id);
+        $article_catalog=$catalogs->article_catalog()->paginate();
+        return view('catalogs.show',compact('catalogs','article_catalog'));
+
     }
 
     /**
@@ -58,7 +70,9 @@ class CatalogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $catalogs=Catalog::findOrFail($id);
+        $catalog_types=CatalogType::pluck('catalog_type','id');
+        return view('catalogs.edit', compact('catalogs','catalog_types'));
     }
 
     /**
@@ -70,7 +84,17 @@ class CatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'starts_at' => 'required',
+            'ends_at'=> 'required',
+            'catalog_type_id' => ''
+
+        ]);
+        $catalogs=Catalog::findOrFail($id);
+        $catalogs-> fill($validated);
+        $catalogs->save();
+        return redirect() ->route('catalogs.show',['catalog'=>$catalogs ->id]);
+        
     }
 
     /**

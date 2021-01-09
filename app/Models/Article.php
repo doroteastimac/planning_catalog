@@ -13,18 +13,24 @@ class Article extends Model
         'article_name',
         'article_tp',
         'article_pal',
-        'category'
+        'category',
+        'producer_id'
     ];
-    public function catalog()
+    public function producer()
     {
-        return $this->belongsToMany('planning_catalog\Models\Catalog');
+        return $this->belongsTo(Producer::class);
     }
-    public function customer()
+    
+    public function article_center()
     {
-        return $this->belongsToMany('planning_catalog\Models\Customer');
+        return $this->belongsToMany(Article::class,'article_center','center_id','article_id');
     }
-    public function center()
+    public function article_customer()
     {
-        return $this->belongsToMany('planning_catalog\Models\Center');
+        return $this->belongsToMany(Article::class,'article_customer','article_id','customer_id');
+    }
+    public function article_catalog()
+    {
+        return $this->belongsToMany(Article::class,'article_catalog','article_id','catalog_id');
     }
 }

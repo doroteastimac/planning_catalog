@@ -24,7 +24,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create');
     }
 
     /**
@@ -35,7 +35,12 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated=$request->validate([
+            'customer_code'=> 'required|unique:customers|max:255',
+            'customer_name' => 'required|unique:customers|max:255'
+        ]);
+        $customers=Customer::create($validated);
+        return view('customers.show',compact('customers'));
     }
 
     /**
@@ -58,7 +63,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customers=Customer::findOrFail($id);
+        return view('customers.edit', compact('customers'));
     }
 
     /**
@@ -70,7 +76,15 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated=$request->validate([
+            'customer_code'=> 'required|max:255',
+            'customer_name' => 'required|max:255'
+        ]);
+        $customers=Customer::findOrFail($id);
+        $customers -> fill($validated);
+        $customers -> save();
+
+        return view('customers.show',compact ('customers'));
     }
 
     /**
@@ -81,6 +95,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Customer::destroy($id);
+        return redirect() ->route('customers.index');
     }
 }

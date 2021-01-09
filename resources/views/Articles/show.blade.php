@@ -3,8 +3,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div>
-    <h3 class="mt-3"> Article detal </h3>
+<div class="mt-5 text-center">
+    <h1> {{$articles->article_name}} </h1>
+    <img src="https://picsum.photos/seed/picsum/300/300" alt="image" class="d-block mx-auto rounded-circle">
     <ul class= "list-unstyled"> 
      
         <li><b>Article name:</b> {{ $articles -> article_name}}</li>
