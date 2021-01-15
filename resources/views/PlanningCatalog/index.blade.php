@@ -6,7 +6,7 @@
   <hr class="my-4">   
 </div>
 
-<form method="GET" action="{{ route('planningcatalog.search') }}">
+<form method="GET" action="{{ route('planningcatalog.') }}">
   <div class="mb-3">
     <label for="article_code" class="form-label">Šifra artikla</label>
     <input type="text" class="form-control" id="article_code" aria-describedby="article_code">
