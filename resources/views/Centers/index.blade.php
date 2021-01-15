@@ -3,9 +3,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ route ('centers.create')}}" class="btn btn-primary mt-5"> ADD </a>
-<table class="table mt-3">
-  <thead class="thead-light">
+<a href="{{ route ('centers.create')}}" class="btn btn-info mt-5"> <b> Dodaj </b> </a>
+<table class="table table-striped mt-3">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Šifra centra</th>
@@ -22,8 +22,8 @@
         <td>{{$centers->center_name}}</td>
         <td>{{$centers->center_address}}</td>
         <td> 
-          <a class="btn btn-outline-primary" href="{{ route ('centers.show', ['center' => $centers -> id])}}"> Details</a>
-          <a class="btn btn-outline-primary" href="{{ route ('centers.edit', ['center' => $centers -> id])}}">edit</a>
+          <a class="btn btn-outline-info" href="{{ route ('centers.show', ['center' => $centers -> id])}}"> Detalji</a>
+          <a class="btn btn-outline-info" href="{{ route ('centers.edit', ['center' => $centers -> id])}}">Uredi</a>
         </td>
                 </tr>
     @endforeach

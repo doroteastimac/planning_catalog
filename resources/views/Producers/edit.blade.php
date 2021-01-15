@@ -8,7 +8,7 @@
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="producer_code"> Šifra dobavljača </label>
+        <label for="producer_code"> <b> Šifra dobavljača</b>  </label>
         <input value="{{$producers ->producer_code}}" name="producer_code" type="text" class="form-control" id="producer_code">
         @if ($errors ->has ('producer_code'))
             <span class="text-danger"> {{$errors -> first ('producer_code')}}</span>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group">
-        <label for="producer_name"> Naziv dobavljača </label>
+        <label for="producer_name"> <b> Naziv dobavljača </b> </label>
         <input value="{{ $producers ->producer_name}}" name="producer_name" type="text" class="form-control" id="producer_name">
         @if ($errors ->has ('producer_name'))
             <span class="text-danger"> {{$errors -> first ('producer_name')}}</span>

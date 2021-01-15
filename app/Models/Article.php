@@ -21,16 +21,16 @@ class Article extends Model
         return $this->belongsTo(Producer::class);
     }
     
-    public function article_center()
+    public function centers()
     {
         return $this->belongsToMany(Article::class,'article_center','center_id','article_id');
     }
-    public function article_customer()
+    public function customers()
     {
         return $this->belongsToMany(Article::class,'article_customer','article_id','customer_id');
     }
-    public function article_catalog()
+    public function catalogs()
     {
-        return $this->belongsToMany(Article::class,'article_catalog','article_id','catalog_id');
+        return $this->belongsToMany(Article::class,'article_catalog','article_id','catalog_id')->withPivot('sales_count');
     }
 }

@@ -30,3 +30,4 @@ Route::resource('customers',CustomerController::class);
 Route::resource('producers',ProducerController::class);
 
 
+Route::get('planning_catalog', [PlanningCatalogController::class, 'index']);

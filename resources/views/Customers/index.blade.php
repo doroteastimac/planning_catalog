@@ -3,9 +3,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ route ('customers.create')}}" class="btn btn-primary mt-5"> ADD </a>
-<table class="table mt-3">
-  <thead class="thead-light">
+<a href="{{ route ('customers.create')}}" class="btn btn-info mt-5"><b>  Dodaj </b> </a>
+<table class="table table-striped mt-3">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Šifra kupca</th>
@@ -20,8 +20,8 @@
         <td>{{$customers->customer_code}}</td>
         <td>{{$customers->customer_name}}</td>
         <td> 
-          <a class="btn btn-outline-primary" href="{{ route ('customers.show', ['customer' => $customers -> id])}}"> Details</a>
-          <a class="btn btn-outline-primary" href="{{ route ('customers.edit', ['customer' => $customers -> id])}}">edit</a>
+          <a class="btn btn-outline-info" href="{{ route ('customers.show', ['customer' => $customers -> id])}}"> Detalji</a>
+          <a class="btn btn-outline-info" href="{{ route ('customers.edit', ['customer' => $customers -> id])}}">Uredi</a>
         </td>
         
        </tr>

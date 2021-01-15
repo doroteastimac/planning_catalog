@@ -10,31 +10,39 @@
 
     <title>Planning catalog</title>
   </head>
+  
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Planning Catalog</a>
+                <style>
+                    body {
+                         background-color: #E3E3E3;
+                        }
+
+                </style>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
+  
+  <a class="navbar-brand" href="/"><b> Pretraži </b></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ route('articles.index') }} ">Articles </a>
+        <a class="nav-link" href="{{ route('articles.index') }} "><b>Artikli</b> </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('catalogs.index')}}">Catalogs <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('catalogs.index')}}"><b>Katalozi</b> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('catalog_types.index')}}">Catalog Types <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('catalog_types.index')}}"><b>Vrste kataloga</b> <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('centers.index')}}">Centers <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('centers.index')}}"><b>Centri </b><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('customers.index')}}">Customers <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('customers.index')}}"><b>Kupci </b><span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('producers.index')}}">Producers <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('producers.index')}}"><b>Dobavljači</b> <span class="sr-only">(current)</span></a>
       </li>
   </div>
 </nav>

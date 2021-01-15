@@ -6,7 +6,7 @@
     @csrf
     @method('PUT')
     <div class="form-group">
-        <label for="catalog_type"> Vrsta kataloga </label>
+        <label for="catalog_type"> <b> Vrsta kataloga </b></label>
         <input value="{{ $catalog_types ->catalog_type}}" name="catalog_type" type="text" class="form-control" id="catalog_type">
         @if ($errors ->has ('catalog_type'))
             <span class="text-danger"> {{$errors -> first ('catalog_type')}}</span>

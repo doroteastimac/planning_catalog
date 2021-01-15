@@ -3,9 +3,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ route ('catalog_types.create')}}" class="btn btn-primary mt-5"> ADD </a>
-<table class="table mt-3">
-  <thead class="thead-light">
+<a href="{{ route ('catalog_types.create')}}" class="btn btn-info mt-5"><b>  Dodaj </b> </a>
+<table class="table table-striped mt-3">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Tip kataloga</th>
@@ -18,8 +18,8 @@
         <td>{{$catalog_types->id}}</td>
         <td>{{$catalog_types->catalog_type}}</td>
         <td> 
-          <a class="btn btn-outline-primary" href="{{ route ('catalog_types.show', ['catalog_type' => $catalog_types -> id])}}"> Details</a>
-          <a class="btn btn-outline-primary" href="{{ route ('catalog_types.edit', ['catalog_type' => $catalog_types -> id])}}">edit</a>
+          <a class="btn btn-outline-info" href="{{ route ('catalog_types.show', ['catalog_type' => $catalog_types -> id])}}"> Detalji</a>
+          <a class="btn btn-outline-info" href="{{ route ('catalog_types.edit', ['catalog_type' => $catalog_types -> id])}}">Uredi</a>
         </td>
         </tr>
     @endforeach

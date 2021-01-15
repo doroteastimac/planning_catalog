@@ -3,9 +3,9 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ route ('articles.create')}}" class="btn btn-primary mt-5"> ADD </a>
-<table class="table mt-3">
-  <thead class="thead-light">
+<a href="{{ route ('articles.create')}}" class="btn btn-info mt-5"><b> Dodaj </b></a>
+<table class="table table-striped mt-3">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Šifra artikla</th>
@@ -19,6 +19,7 @@
   </thead>
   <tbody>
     @foreach($articles->items() as $articles)
+    
         <tr>
         <td>{{$articles->id}}</td>
         <td>{{$articles->article_code}}</td>
@@ -28,8 +29,8 @@
         <td>{{$articles->category}}</td>
         <td>{{$articles->producer->producer_name}}</td>
         <td> 
-          <a class="btn btn-outline-primary" href="{{ route ('articles.show', ['article' => $articles -> id])}}"> Details</a>
-          <a class="btn btn-outline-primary" href="{{ route ('articles.edit', ['article' => $articles -> id])}}">edit</a>
+          <a class="btn btn-outline-info" href="{{ route ('articles.show', ['article' => $articles -> id])}}">Detalji</a>
+          <a class="btn btn-outline-info" href="{{ route ('articles.edit', ['article' => $articles -> id])}}">Uredi</a>
         </td>
         </tr>
     @endforeach

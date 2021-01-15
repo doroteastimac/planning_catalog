@@ -16,9 +16,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles= Article::with(['producer'])->paginate();
+        $articles = Article::with(['producer'])->paginate();
         return view('articles.index',compact ('articles'));
-        
     }
    
 
@@ -54,7 +53,6 @@ class ArticleController extends Controller
         
         $articles=Article::create($validated);
         return view('articles.show', compact ('articles'));
-        
     }
 
     /**
@@ -66,9 +64,9 @@ class ArticleController extends Controller
     public function show($id)
     {
         $articles= Article::with('producer')->findorFail($id);
-        $article_center=$articles->article_center()->paginate();
-        $article_catalog=$articles->article_catalog()->paginate();
-        $article_customer=$articles->article_customer()->paginate();
+        $article_center=$articles->centers()->paginate();
+        $article_catalog=$articles->catalogs()->paginate();
+        $article_customer=$articles->customers()->paginate();
         return view('articles.show',compact('articles','article_center','article_catalog','article_customer'));
     }
 

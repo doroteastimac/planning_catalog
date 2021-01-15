@@ -5,8 +5,8 @@
     <form action="{{route('catalogs.update',['catalog' => $catalogs->id] )}}" method="POST">
     @csrf
     @method('PUT')
-    <div class="form-group">
-        <label for="starts_at"> Početak </label>
+    <div class="form-group mt-3">
+        <label for="starts_at"><b> Početak </b></label>
         <input value="{{$catalogs -> starts_at}}" name="starts_at" type="text" class="form-control" id="starts_at">
         @if ($errors ->has ('starts_at'))
             <span class="text-danger"> {{$errors -> first ('starts_at')}}</span>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-        <label for="ends_at"> Kraj </label>
+        <label for="ends_at"><b> Kraj </b></label>
         <input value="{{$catalogs -> ends_at}}" name="ends_at" type="text" class="form-control" id="ends_at">
         @if ($errors ->has ('ends_at'))
             <span class="text-danger"> {{$errors -> first ('ends_at')}}</span>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-            <label for="catalog">Katalog ID</label>
+            <label for="catalog"><b>Katalog ID</b></label>
             {{ Form::select('catalog_type_id', $catalog_types, $catalogs->catalog_type_id, ['class' => 'form-control', 'id' => 'catalog']) }}
     </div>
 
