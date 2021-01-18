@@ -15,9 +15,21 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50);
+            $table->string('name', 50);
             $table->string('email')->unique();
             $table->string('password');
+            $table->dateTime('last_online')->nullable();
+
+            /* spoji sa tablicom countries, kolonom id */
+            $table->foreignId('country_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
+
+            /* spoji sa tablicom roles, kolonom id */
+            $table->foreignId('role_id')->constrained();
+            
+            /* created_at, updated_at */
             $table->timestamps();
         });
     }

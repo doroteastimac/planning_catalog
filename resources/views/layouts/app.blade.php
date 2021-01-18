@@ -44,15 +44,67 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{route('producers.index')}}"><b>Dobavljači</b> <span class="sr-only">(current)</span></a>
       </li>
+      </ul>
+      @auth
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="nav-user" role="button" data-toggle="dropdown">
+                Welcome {{ $currentUser->name }}<small> ({{ $currentUser->role->name }})</small>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ route('welcome.php', ['user' => $currentUser->id]) }}">My profile</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+            </div>
+            </li>
+        </ul>
+        @endauth
+
   </div>
 </nav>
+
+<div class="container">
+
+<!-- @if (session('success'))
+    <div class="alert alert-success mt-5">
+        {{ session('success') }}
+    </div>
+@endif -->
+
+
+</div>
 
     <div class="container">
 
     @yield('content')
 
     </div>
+    <style>
+        /* temporarily here */
+        body { padding-bottom: 10vh; }
+        footer {
+            left: 0;
+            bottom: 0;
+            height: 8vh;
+            z-index: 100;
+        }
+    </style>
 
+    <script>
+        /* temporarily here */
+        function areYouSure(ev) {
+            if(confirm('Are you sure you?')){
+                return true;
+            }
+            ev.preventDefault();
+            return false;
+        }
+    </script>
+    <footer class="bg-light w-100 text-center position-fixed pt-3">
+        <small>Powered by <a href="https://www.google.com/search?q=zapravo prevara" target="_blank">Nije prevara d.o.o.</a></small>
+    </footer>
 
 
 

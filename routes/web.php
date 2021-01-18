@@ -18,10 +18,12 @@ use App\Http\Controllers\ProducerController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['auth'])->group(function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
 Route::resource('articles',ArticleController::class);
 Route::resource('catalogs',CatalogController::class);
 Route::resource('catalog_types',CatalogTypeController::class);
@@ -31,3 +33,7 @@ Route::resource('producers',ProducerController::class);
 
 
 Route::get('planning_catalog', [PlanningCatalogController::class, 'index']);
+
+});
+
+require __DIR__.'/auth.php';

@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             ArticleCatalogSeeder::class,
             ArticleCenterSeeder::class,
             ArticleCustomerSeeder::class,
+            CountrySeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
               ]);
     }
 }
