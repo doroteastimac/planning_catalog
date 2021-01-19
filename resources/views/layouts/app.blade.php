@@ -1,3 +1,7 @@
+@php 
+$currentUser = \Auth::user();
+@endphp
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -44,6 +48,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{route('producers.index')}}"><b>Dobavljači</b> <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{route('users.index')}}"><b>Users</b> <span class="sr-only">(current)</span></a>
+      </li>
       </ul>
       @auth
         <ul class="navbar-nav ml-auto">
@@ -52,7 +59,7 @@
                 Welcome {{ $currentUser->name }}<small> ({{ $currentUser->role->name }})</small>
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="{{ route('welcome.php', ['user' => $currentUser->id]) }}">My profile</a>
+                <a class="dropdown-item" href="{{ route('users.show', ['user' => $currentUser->id]) }}">My profile</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="dropdown-item">Logout</button>

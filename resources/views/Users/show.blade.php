@@ -30,38 +30,6 @@ $loggedInUser = \Auth::user();
         @endif
     </div>
 
-    <!-- popis prijatelja -->
-    <h1 class="h3 mt-4">Friends</h1>
-    <div class="row">
-        @foreach($friends as $friend)
-        <div class="col-sm-2">
-            <a href="{{ route('users.show', ['user' => $friend->id]) }}">
-                <img src="https://picsum.photos/{{ rand(95, 105) }}" alt="profile image" class="d-block mx-auto rounded-circle">
-                <div>{{ $friend->name }}</div>
-            </a>
-        </div>
-        @endforeach
-    </div>
-
-    <!-- popis grupa -->
-    <h1 class="h3 mt-5">Groups</h1>
-    <table class="table table-striped mt-3 table-sm">
-        <thead>
-          <tr>
-            <th scope="col">Group name</th>
-            <th class="text-center w-25" scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($user->groups as $group)
-              <tr>
-                  <td>{{ $group->name }}</td>
-                  <td class="text-center">
-                    <a href="{{ route('groups.show', ['group' => $group->id]) }}" class="btn btn-outline-primary btn-sm">Details</a>
-                  </td>
-              </tr>
-          @endforeach
-        </tbody>
-    </table>
+    
 </div>
 @endsection

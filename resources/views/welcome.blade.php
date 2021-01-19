@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@php
+$currentUserId = \Auth::user()->id;
+@endphp
+
 @section('content')
 <style>
 body {
